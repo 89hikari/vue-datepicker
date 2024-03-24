@@ -1,6 +1,8 @@
 <script setup>
-import { weekdays, months } from '../consts/index'
-defineProps({
+import { computed } from 'vue'
+import { weekdays, months } from '../helpers/consts'
+
+const props = defineProps({
   selectedDayShown: {
     type: Number,
     default: 0
@@ -18,15 +20,19 @@ defineProps({
     default: 0
   }
 })
+
+const titleSecondary = computed(
+  () => months.find((el) => el.value === props.selectedMonthShown).titleSecondary
+)
 </script>
 
 <template>
   <div class="d-flex align-center w-50">
-    <font-awesome-icon icon="calendar" class="fa-lg mr-3" />
+    <v-icon icon="mdi-calendar" class="fa-lg mr-6" />
     <div>
       <p class="font-weight-bold">
         {{ selectedDayShown }}
-        {{ months.find((el) => el.value === selectedMonthShown).titleSecondary }}
+        {{ titleSecondary }}
         {{ selectedYearShown }}
       </p>
       <p class="caption text-medium-emphasis">{{ weekdays[selectedWeekdayShown] }}</p>

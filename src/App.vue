@@ -1,7 +1,7 @@
 <script setup>
-import DPicker from './components/DPicker.vue'
+import TheDatepicker from './common/components/TheDatepicker.vue'
 </script>
 
 <template>
-  <d-picker />
+  <the-datepicker />
 </template>

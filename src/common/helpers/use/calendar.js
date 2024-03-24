@@ -20,6 +20,7 @@ export default function useCalendar(selectedYear, selectedMonth, selectedDay) {
         isCurMonth: true,
         date: date
       }
+      result.key = `${result.day}${result.month}`
       try {
         calendar.value[row].push(result)
       } catch (_) {
@@ -42,6 +43,7 @@ export default function useCalendar(selectedYear, selectedMonth, selectedDay) {
         isCurMonth: false
       }
 
+      result.key = `${result.day}${result.month}`
       result.date = new Date(result.year, result.month, result.day)
 
       calendar.value[0].unshift(result)
@@ -51,7 +53,7 @@ export default function useCalendar(selectedYear, selectedMonth, selectedDay) {
     const lastDate = calendar.value.at(-1).at(-1).date
 
     const nextMonthDate =
-      lastDate.getMonth() == 11
+      lastDate.getMonth() === 11
         ? new Date(lastDate.getFullYear() + 1, 0, 1)
         : new Date(lastDate.getFullYear(), lastDate.getMonth() + 1, 1)
 
@@ -64,6 +66,7 @@ export default function useCalendar(selectedYear, selectedMonth, selectedDay) {
         isCurMonth: false
       }
 
+      result.key = `${result.day}${result.month}`
       result.date = new Date(result.year, result.month, result.day)
 
       calendar.value.at(-1).push(result)
@@ -71,9 +74,9 @@ export default function useCalendar(selectedYear, selectedMonth, selectedDay) {
     }
   }
 
-  watch([selectedYear, selectedMonth, selectedDay], (currentValue) => {
+  watch([selectedYear, selectedMonth, selectedDay], (currentValue) =>
     redrawCalendar(...currentValue)
-  })
+  )
 
   redrawCalendar(selectedYear.value, selectedMonth.value, selectedDay.value)
 

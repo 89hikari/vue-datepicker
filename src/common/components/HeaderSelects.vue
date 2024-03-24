@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { years, months } from '../consts/index'
+import { years, months } from '../helpers/consts'
 const emit = defineEmits(['update:selectedYear', 'update:selectedMonth'])
 const props = defineProps({
   selectedYear: {
@@ -33,9 +33,23 @@ const month = computed({
 
 <template>
   <div class="d-flex align-center w-50 gc-5">
-    <v-select :items="years" label="Выберите год" class="mt-5" v-model="year"></v-select>
-    <v-select :items="months" label="Выберите месяц" class="mt-5" v-model="month"></v-select>
+    <v-select
+      :items="years"
+      label="Выберите год"
+      class="v-select__custom-datepicker"
+      v-model="year"
+    ></v-select>
+    <v-select
+      :items="months"
+      label="Выберите месяц"
+      class="v-select__custom-datepicker"
+      v-model="month"
+    ></v-select>
   </div>
 </template>
 
-<style scoped></style>
+<style>
+.v-select__custom-datepicker .v-input__details {
+  display: none !important;
+}
+</style>

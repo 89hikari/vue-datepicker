@@ -3,8 +3,8 @@ import { ref } from 'vue'
 import HeaderDates from './HeaderDates.vue'
 import HeaderSelects from './HeaderSelects.vue'
 import HeaderWeekdays from './HeaderWeekdays.vue'
-import BottomCalendar from './BottomCalendar.vue'
-import { curDay, curMonth, curYear, curWeekday } from '../consts/index'
+import BottomCalendar from './TheCalendar.vue'
+import { curDay, curMonth, curYear, curWeekday } from '../helpers/consts'
 
 const selectedDay = ref(curDay)
 const selectedYear = ref(curYear)
@@ -29,8 +29,8 @@ const handleSelectDate = (value) => {
 <template>
   <v-container>
     <v-layout>
-      <div sm6 class="w-100">
-        <v-card class="pa-4 w-50" style="min-width: 400px">
+      <div class="w-100">
+        <v-card class="pa-4 w-50 elevation-5" style="min-width: 400px">
           <div class="d-flex align-center">
             <header-dates
               :selectedDayShown="selectedDayShown"
